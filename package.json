@@ -1,6 +1,6 @@
 {
     "name": "@actengage/talon",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Extract original messages from email reply chains — a PHP port of mailgun/talon",
     "private": true,
     "scripts": {
