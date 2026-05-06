@@ -1,0 +1,10 @@
+/vendor
+/node_modules
+/.phpstan-cache
+/.rector-cache
+/.phpunit.cache
+.phpunit.result.cache
+composer.phar
+.DS_Store
+.idea
+.vscode

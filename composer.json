@@ -1,0 +1,65 @@
+{
+    "name": "actengage/talon",
+    "description": "Extract original messages from email reply chains — a PHP port of mailgun/talon",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["email", "reply", "quotation", "talon", "mailgun", "laravel"],
+    "authors": [
+        {
+            "name": "Active Engagement",
+            "email": "hello@actengage.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-dom": "*",
+        "ext-mbstring": "*",
+        "illuminate/support": "^10.0|^11.0|^12.0|^13.0"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "orchestra/testbench": "^9.0|^10.0",
+        "laravel/pint": "^1.29",
+        "larastan/larastan": "^3.9",
+        "rector/rector": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Actengage\\Talon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Actengage\\Talon\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest --compact",
+        "lint": "vendor/bin/pint",
+        "lint:check": "vendor/bin/pint --test",
+        "stan": "vendor/bin/phpstan analyse --memory-limit=1G",
+        "rector": "vendor/bin/rector",
+        "rector:check": "vendor/bin/rector --dry-run",
+        "check": [
+            "@lint:check",
+            "@stan",
+            "@rector:check",
+            "@test"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Actengage\\Talon\\TalonServiceProvider"
+            ],
+            "aliases": {
+                "Talon": "Actengage\\Talon\\Facades\\Talon"
+            }
+        }
+    }
+}
