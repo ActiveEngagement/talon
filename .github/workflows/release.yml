@@ -38,8 +38,8 @@ jobs:
       - name: Create Release PR or tag
         uses: changesets/action@v1
         with:
-          version: pnpm version
-          publish: pnpm release
+          version: pnpm exec changeset version
+          publish: pnpm exec changeset tag
           commit: "chore(release): version packages"
           title: "chore(release): version packages"
         env:
