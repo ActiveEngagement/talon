@@ -11,7 +11,6 @@ concurrency:
 
 env:
   PHP_VERSION: "8.4"
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
   check:
@@ -23,7 +22,7 @@ jobs:
         check: [pest, pint, phpstan, rector]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -39,7 +38,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer & vendor
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ${{ steps.composer-cache.outputs.dir }}
@@ -53,7 +52,7 @@ jobs:
 
       - name: Cache PHPStan result
         if: matrix.check == 'phpstan'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .phpstan-cache
           key: phpstan-${{ runner.os }}-${{ github.sha }}
@@ -61,7 +60,7 @@ jobs:
 
       - name: Cache Rector result
         if: matrix.check == 'rector'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: .rector-cache
           key: rector-${{ runner.os }}-${{ github.sha }}
